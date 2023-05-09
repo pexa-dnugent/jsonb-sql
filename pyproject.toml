@@ -1,0 +1,14 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "src"
+description = "Test JSONB conversion"
+version = "1.0.0"
+authors = [{name = "David Nugent", email = "david.nugent@pexa.com.au"}]
+dependencies = [
+    "polyfactory >= 2.1",
+    "psycopg[binary] >= 3.1",
+    "dbscripts @ git+https://github.com/deeprave/dbscripts@main",
+]

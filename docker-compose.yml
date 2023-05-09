@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+
+  cache:
+    image: redis:latest
+    volumes:
+      - redis_data:/data
+    expose:
+      - "6379"
+    ports:
+      - "${REDIS_PORT}:6379"
+    restart: always
+    profiles:
+      - cache
+      - all
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=${SAUSER}
+      - POSTGRES_PASSWORD=${SAPASS}
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+    ports:
+      - "${DBPORT}:5432"
+    restart: always
+    profiles:
+      - db
+      - all
+
+volumes:
+  pgsql_data:
+  redis_data:
